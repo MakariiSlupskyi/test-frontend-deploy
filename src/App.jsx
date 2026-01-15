@@ -23,8 +23,12 @@ function App() {
   }, [messages])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (message.trim() === "") return
+    e.preventDefault()
+    if (message.trim() === '') return
+    if (message.trim() === '\\delete') {
+      axios.delete(`${import.meta.env.VITE_BACKEND_URL}/messages`)
+    }
+    console.log(message.trim())
 
     const newMsg = { userName: userName, message: message }
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/messages`, newMsg)
